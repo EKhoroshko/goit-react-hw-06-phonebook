@@ -21,10 +21,6 @@ const contacts = createSlice({
   },
 });
 
-export const { addContact, removeContact } = contacts.actions;
-
-export const selectContactItem = state => state.phoneBook.contacts.items;
-
 const filtration = createSlice({
   name: 'filtration',
   initialState: {
@@ -37,9 +33,8 @@ const filtration = createSlice({
   },
 });
 
+export const { addContact, removeContact } = contacts.actions;
 export const { filterContacts } = filtration.actions;
-
-export const selectFilter = state => state.phoneBook.filtration.search;
 
 export const phoneBook = combineReducers({
   contacts: contacts.reducer,

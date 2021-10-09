@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/slice/slice';
+import { selectContactItem } from '../../redux/contacts/selectors/selectors';
 import css from '../FormSubmit/FormSubmit.module.css';
 
-function FormSubmit({ phone, title, submitContact }) {
+function FormSubmit({ phone, title }) {
+  const dispatch = useDispatch();
+  const listConcacts = useSelector(selectContactItem);
   const [name, setName] = useState('');
   const [number, setNumder] = useState('');
 
@@ -13,6 +18,20 @@ function FormSubmit({ phone, title, submitContact }) {
 
   const handleChangeNumder = e => {
     setNumder(e.target.value);
+  };
+
+  const submitContact = contact => {
+    if (!checkContact(contact.name)) {
+      dispatch(addContact(contact));
+    } else {
+      alert(`${contact.name} is alredy in contacts`);
+    }
+  };
+
+  const checkContact = name => {
+    return listConcacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
   };
 
   const handleSubmit = e => {
@@ -65,7 +84,6 @@ function FormSubmit({ phone, title, submitContact }) {
 
 FormSubmit.propType = {
   title: PropTypes.string,
-  addContact: PropTypes.func,
   phone: PropTypes.string,
 };
 

@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { filterContacts } from '../../redux/contacts/slice/slice';
 import css from '../Filter/Filter.module.css';
 
-function Filter({ filter, onChange }) {
+function Filter({ filter }) {
+  const dispatch = useDispatch();
+
+  const handleChange = e => {
+    dispatch(filterContacts(e.target.value));
+  };
+
   return (
     <div className={css.conteiner}>
       <h3 className={css.title}>Find contacts by name</h3>
@@ -10,7 +18,7 @@ function Filter({ filter, onChange }) {
         type="text"
         name="filter"
         value={filter}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   );
@@ -18,7 +26,6 @@ function Filter({ filter, onChange }) {
 
 Filter.propType = {
   value: PropTypes.string,
-  onChange: PropTypes.func,
 };
 
 export default Filter;

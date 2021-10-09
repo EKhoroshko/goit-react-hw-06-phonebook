@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { phoneBook } from '../store/contacts';
+import { phoneBook } from './contacts/slice/slice';
 
 const contactsPersistConfig = {
   key: 'contacts',
