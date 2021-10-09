@@ -9,7 +9,6 @@ import {
   filterContacts,
   selectFilter,
 } from './store/contacts';
-//import { filterContacts, selectFilter } from './store/filtration';
 import { useDispatch, useSelector } from 'react-redux';
 
 function App() {

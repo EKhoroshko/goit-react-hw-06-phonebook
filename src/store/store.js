@@ -10,8 +10,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-//import contacts from '../store/contacts';
-//import filtration from '../store/filtration';
 import { phoneBook } from '../store/contacts';
 
 const contactsPersistConfig = {
@@ -22,7 +20,6 @@ const contactsPersistConfig = {
 export const store = configureStore({
   reducer: {
     phoneBook: persistReducer(contactsPersistConfig, phoneBook),
-    // filtration: filtration,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
