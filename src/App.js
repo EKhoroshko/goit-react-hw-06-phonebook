@@ -2,8 +2,14 @@ import './App.css';
 import FormSubmit from './components/FormSubmit/FormSubmit';
 import CreateContactList from './components/PhoneList/PhoneList';
 import Filter from './components/Filter/Filter';
-import { selectContactItem, addContact, removeContact } from './store/contacts';
-import { filterContacts, selectFilter } from './store/filtration';
+import {
+  selectContactItem,
+  addContact,
+  removeContact,
+  filterContacts,
+  selectFilter,
+} from './store/contacts';
+//import { filterContacts, selectFilter } from './store/filtration';
 import { useDispatch, useSelector } from 'react-redux';
 
 function App() {

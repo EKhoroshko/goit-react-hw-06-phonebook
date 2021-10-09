@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 
-const slice = createSlice({
+const contacts = createSlice({
   name: 'contacts',
   initialState: {
     items: [
@@ -20,8 +21,27 @@ const slice = createSlice({
   },
 });
 
-export const { addContact, removeContact } = slice.actions;
+export const { addContact, removeContact } = contacts.actions;
 
-export const selectContactItem = state => state.contacts.items;
+export const selectContactItem = state => state.phoneBook.contacts.items;
 
-export default slice.reducer;
+const filtration = createSlice({
+  name: 'filtration',
+  initialState: {
+    search: '',
+  },
+  reducers: {
+    filterContacts: (_, { payload }) => ({
+      search: payload,
+    }),
+  },
+});
+
+export const { filterContacts } = filtration.actions;
+
+export const selectFilter = state => state.phoneBook.filtration.search;
+
+export const phoneBook = combineReducers({
+  contacts: contacts.reducer,
+  filtration: filtration.reducer,
+});
