@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { filterContacts } from '../../redux/contacts/slice/slice';
+import { selectFilter } from '../../redux/contacts/selectors/selectors';
 import css from '../Filter/Filter.module.css';
 
-function Filter({ filter }) {
+function Filter() {
   const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
 
   const handleChange = e => {
     dispatch(filterContacts(e.target.value));
